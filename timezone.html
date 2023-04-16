@@ -13,33 +13,19 @@
       <label for="timezonelabel">Choose a Time Zone</label>
       <select id="city">
         <option value=""></option>
-        <option value="paris">Paris 🇫🇷</option>
-        <option value="tokyo">Tokyo 🇯🇵</option>
-        <option value="sydney">Sydney 🇦🇺</option>
+        <option value="Europe/Paris">Paris 🇫🇷</option>
+        <option value="Asia/Tokyo">Tokyo 🇯🇵</option>
+        <option value="Australia/Sydney">Sydney 🇦🇺</option>
       </select>
     </div>
     <script>
       function displaytime(event) {
         if (event.target.value.length > 0) {
-          if (event.target.value === "paris") {
-            let timezone = "Europe/Paris";
-            displaytimezone(timezone);
-          }
-          if (event.target.value === "tokyo") {
-            let timezone = "Asia/Tokyo";
-            displaytimezone(timezone);
-          }
-          if (event.target.value === "sydney") {
-            let timezone = "Australia/Sydney";
-            displaytimezone(timezone);
-          }
+          let timezone = event.target.value;
+          let time = moment().tz(timezone).format("dddd, MMMM D, YYYY HH:mm a");
+          let sentence = `It is now ${time} in ${timezone}`;
+          alert(sentence);
         }
-      }
-
-      function displaytimezone(timezone) {
-        let time = moment().tz(timezone).format("dddd, MMMMM D, YYYY HH:mm a");
-        let sentence = `It is now ${time} in ${timezone}`;
-        alert(sentence);
       }
 
       let city = document.querySelector("#city");
